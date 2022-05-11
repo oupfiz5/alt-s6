@@ -237,7 +237,7 @@ docker exec -it alt-s6 /bin/bash
   jobs:
     build:
       name: Build and push image to dockerhub
-      runs-on: alt-latest
+      runs-on: ubuntu-latest
       steps:
         - name: Repo checkout
           uses: actions/checkout@v2
