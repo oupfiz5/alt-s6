@@ -7,6 +7,9 @@ FROM ${BASE_IMAGE_NAME}:${BASE_IMAGE_TAG}
 ARG S6_OVERLAY_VERSION="${S6_OVERLAY_VERSION}" \
     BUILD_DATE="${BUILD_DATE}"
 
+# * Maintainer
+MAINTAINER "Oupfiz V <oupfiz5@yandex.ru>"
+
 # * Labels
 LABEL \
     maintainer="Oupfiz V <oupfiz5@yandex.ru>" \
@@ -43,6 +46,7 @@ RUN apt-get update && \
     apt-get install -y tzdata && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    rm -f /var/cache/apt/*.bin && \
     cd /tmp && \
     tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz && \
     tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz && \

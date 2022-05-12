@@ -31,7 +31,7 @@ on:
 jobs:
   build:
     name: Build and push image to dockerhub
-    runs-on: alt-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Repo checkout
         uses: actions/checkout@v2
