@@ -8,6 +8,7 @@ ARG S6_OVERLAY_VERSION="${S6_OVERLAY_VERSION}" \
     BUILD_DATE="${BUILD_DATE}"
 
 # * Maintainer
+# hadolint ignore=DL4000
 MAINTAINER "Oupfiz V <oupfiz5@yandex.ru>"
 
 # * Labels

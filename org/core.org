@@ -363,6 +363,7 @@ docker exec -it alt-s6 /bin/bash
       BUILD_DATE="${BUILD_DATE}"
 
   # * Maintainer
+  # hadolint ignore=DL4000
   MAINTAINER "Oupfiz V <oupfiz5@yandex.ru>"
 
   # * Labels
