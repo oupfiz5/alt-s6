@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1.4
+
 # * Base image
 ARG BASE_IMAGE_NAME="${BASE_IMAGE_NAME}" \
     BASE_IMAGE_TAG="${BASE_IMAGE_TAG}"
@@ -46,17 +48,19 @@ ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLA
 RUN apt-get update && \
     apt-get install -y tzdata && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    rm -f /var/cache/apt/*.bin && \
     cd /tmp && \
     tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz && \
     tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz && \
     tar -C / -Jxpf /tmp/s6-overlay-symlinks-noarch.tar.xz && \
     tar -C / -Jxpf /tmp/s6-overlay-symlinks-arch.tar.xz && \
-    rm /tmp/s6-overlay-noarch.tar.xz && \
-    rm /tmp/s6-overlay-x86_64.tar.xz && \
-    rm /tmp/s6-overlay-symlinks-noarch.tar.xz && \
-    rm /tmp/s6-overlay-symlinks-arch.tar.xz
+    rm /tmp/s6-overlay-noarch.tar.xz  \
+       /tmp/s6-overlay-x86_64.tar.xz  \
+       /tmp/s6-overlay-symlinks-noarch.tar.xz \
+       /tmp/s6-overlay-symlinks-arch.tar.xz && \
+    rm -rf /var/lib/apt/lists/*  \
+       /var/cache/apt/archives/*.rpm  \
+       /var/cache/apt/*.bin
+
 
 # * Entrypoint
 ENTRYPOINT ["/init"]

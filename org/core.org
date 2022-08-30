@@ -164,8 +164,8 @@ docker exec -it alt-s6 /bin/bash
 :END:
 #+begin_src sh :shebang ""
   CONTAINER_NAME="${CONTAINER_NAME:-alt-s6}"
-  S6_OVERLAY_VERSION="${S6_OVERLAY_VERSION:-3.1.0.1}"
-  S6_OVERLAY_IMAGE_TAG="${S6_OVERLAY_IMAGE_TAG:-3.1.0.1}"
+  S6_OVERLAY_VERSION="${S6_OVERLAY_VERSION:-3.1.2.1}"
+  S6_OVERLAY_IMAGE_TAG="${S6_OVERLAY_IMAGE_TAG:-3.1.2.1}"
   BASE_IMAGE_TAG="${BASE_IMAGE_TAG:-sisyphus}"
   BASE_IMAGE_NAME="${BASE_IMAGE_NAME:-alt}"
   IMAGE_NAME="${IMAGE_NAME:-alt-s6}"
@@ -353,6 +353,8 @@ docker exec -it alt-s6 /bin/bash
 :CUSTOM_ID: dockerfile
 :END:
 #+begin_src sh :shebang ""
+  # syntax=docker/dockerfile:1.4
+
   # * Base image
   ARG BASE_IMAGE_NAME="${BASE_IMAGE_NAME}" \
       BASE_IMAGE_TAG="${BASE_IMAGE_TAG}"
@@ -401,17 +403,19 @@ docker exec -it alt-s6 /bin/bash
   RUN apt-get update && \
       apt-get install -y tzdata && \
       apt-get clean && \
-      rm -rf /var/lib/apt/lists/* && \
-      rm -f /var/cache/apt/*.bin && \
       cd /tmp && \
       tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz && \
       tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz && \
       tar -C / -Jxpf /tmp/s6-overlay-symlinks-noarch.tar.xz && \
       tar -C / -Jxpf /tmp/s6-overlay-symlinks-arch.tar.xz && \
-      rm /tmp/s6-overlay-noarch.tar.xz && \
-      rm /tmp/s6-overlay-x86_64.tar.xz && \
-      rm /tmp/s6-overlay-symlinks-noarch.tar.xz && \
-      rm /tmp/s6-overlay-symlinks-arch.tar.xz
+      rm /tmp/s6-overlay-noarch.tar.xz  \
+         /tmp/s6-overlay-x86_64.tar.xz  \
+         /tmp/s6-overlay-symlinks-noarch.tar.xz \
+         /tmp/s6-overlay-symlinks-arch.tar.xz && \
+      rm -rf /var/lib/apt/lists/*  \
+         /var/cache/apt/archives/*.rpm  \
+         /var/cache/apt/*.bin
+
 
   # * Entrypoint
   ENTRYPOINT ["/init"]
