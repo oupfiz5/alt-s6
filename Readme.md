@@ -131,8 +131,7 @@ They are using for testing and scanning:
 
 ## Timezone
 
-Set the timezone for the container, defaults to UTC. To set the
-timezone set the desired timezone with the variable TZ.
+Set the timezone for the container, defaults to UTC. To set the timezone set the desired timezone with the variable TZ.
 
     docker run -itd --restart always \
                --name alt-s6  \
