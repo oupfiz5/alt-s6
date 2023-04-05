@@ -73,7 +73,7 @@ They are using for testing and scanning:
 :CUSTOM_ID: download-from-dockerhub
 :END:
 #+begin_example
-docker pull oupfiz5/alt-s6:sisyphus-3.1.0.0
+docker pull oupfiz5/alt-s6:sisyphus-3.1.4.2
 #+end_example
 
 ** Build from chiselapp (fossil)
@@ -122,7 +122,7 @@ Set the timezone for the container, defaults to UTC. To set the timezone set the
 docker run -itd --restart always \
            --name alt-s6  \
            --env 'TZ=Europe/Moscow' \
-           oupfiz5/alt-s6:sisyphus-3.1.0.1
+           oupfiz5/alt-s6:sisyphus-3.1.4.2
 #+end_example
 
 * Continues Integration
@@ -164,8 +164,8 @@ docker exec -it alt-s6 /bin/bash
 :END:
 #+begin_src sh :shebang ""
   CONTAINER_NAME="${CONTAINER_NAME:-alt-s6}"
-  S6_OVERLAY_VERSION="${S6_OVERLAY_VERSION:-3.1.2.1}"
-  S6_OVERLAY_IMAGE_TAG="${S6_OVERLAY_IMAGE_TAG:-3.1.2.1}"
+  S6_OVERLAY_VERSION="${S6_OVERLAY_VERSION:-3.1.4.2}"
+  S6_OVERLAY_IMAGE_TAG="${S6_OVERLAY_IMAGE_TAG:-3.1.4.2}"
   BASE_IMAGE_TAG="${BASE_IMAGE_TAG:-sisyphus}"
   BASE_IMAGE_NAME="${BASE_IMAGE_NAME:-alt}"
   IMAGE_NAME="${IMAGE_NAME:-alt-s6}"
