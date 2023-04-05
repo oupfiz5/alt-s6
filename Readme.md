@@ -1,3 +1,4 @@
+
 # Table of Contents
 
 -   [About](#about)
@@ -67,7 +68,7 @@ They are using for testing and scanning:
 
 ## Download from dockerhub
 
-    docker pull oupfiz5/alt-s6:sisyphus-3.1.2.1
+    docker pull oupfiz5/alt-s6:sisyphus-3.1.4.2
 
 
 <a id="build-from-chiselapp--fossil-"></a>
@@ -136,7 +137,7 @@ Set the timezone for the container, defaults to UTC. To set the timezone set the
     docker run -itd --restart always \
                --name alt-s6  \
                --env 'TZ=Europe/Moscow' \
-               oupfiz5/alt-s6:sisyphus-3.1.2.1
+               oupfiz5/alt-s6:sisyphus-3.1.4.2
 
 
 <a id="continues-integration"></a>
@@ -159,7 +160,7 @@ For debugging and maintenance purposes you may want access the output log. If yo
 
     docker run -it --rm \
            --name=alt-s6 \
-           oupfiz5/alt-s6:sisyphus-3.1.2.1
+           oupfiz5/alt-s6:sisyphus-3.1.0.1
 
 
 <a id="shell-access"></a>
@@ -169,3 +170,4 @@ For debugging and maintenance purposes you may want access the output log. If yo
 For debugging and maintenance purposes you may want access the containers shell. If you are using Docker version 1.3.0 or higher you can access a running containers shell by starting bash using docker exec:
 
     docker exec -it alt-s6 /bin/bash
+
